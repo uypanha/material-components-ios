@@ -193,6 +193,12 @@ static char *const kKVOContextMDCBaseTextField = "kKVOContextMDCBaseTextField";
   [self applyColorViewModel:colorViewModel withLabelPosition:self.labelPosition];
   CGSize fittingSize = CGSizeMake(CGRectGetWidth(self.bounds), CGFLOAT_MAX);
   self.layout = [self calculateLayoutWithTextFieldSize:fittingSize];
+  CGRect frame = [self.layout labelFrameFloating];
+  if (self.leadingEdgePaddingOverride) {
+      frame.origin.x = [[self leadingEdgePaddingOverride] doubleValue];
+  } else {
+      frame.origin.x = 12;
+  }
   self.labelFrame = [self.layout labelFrameWithLabelPosition:self.labelPosition];
 }
 
